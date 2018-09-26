@@ -7,7 +7,7 @@ um único parâmetro como argumento. Essa função deve retornar `true` se o
 equivalente booleano para o valor passado no argumento for `true`, ou `false`
 para o contrário.
 */
- let isTruthy = (value)=>{
+ const isTruthy = (value)=>{
 	 if(value){
 		 return true;
 	 }else{
@@ -43,8 +43,8 @@ seguintes propriedades (os valores devem ser do tipo mostrado abaixo):
 		ano:2012,
 		cor:'vermelho',
 		quantasPortas:4,
-		assentos:5,
 		quantidadePessoas:0,
+		disponivel:5,
 		mudacor(novaCor){
 			return this.cor = novaCor;
 		},
@@ -61,16 +61,22 @@ seguintes propriedades (os valores devem ser do tipo mostrado abaixo):
 			return `Esse carro é um ${this.obterMarca()} ${this.obterModelo()}`;
 		},
 		addPessoas(qtPessoas){
-			let disponivel = this.assentos - qtPessoas;
-			this.quantidadePessoas+=qtPessoas;
 			
-			if(qtPessoas > disponivel){
-				return `Só temos mais ${disponivel} vagas`;
-			}else if(this.quantidadePessoas >= this.assentos){
-				return `O carro ja está cheio! disponivel `;
-			}else if(this.quantidadePessoas <= this.assentos){
-				return `Já temos ${this.quantidadePessoas} pessoas no carro! disponivel ${disponivel}`;
-			 }
+			if (qtPessoas > this.disponivel ){
+				
+				const s = (this.disponivel ==1)? "" :"s";
+				return `Só cabem mais ${this.disponivel} pessoa${s} no  carro`;
+			}else if(qtPessoas < this.disponivel){
+				
+				this.quantidadePessoas+= qtPessoas;
+				this.disponivel-= qtPessoas;
+				const s = (this.quantidadePessoas ==1)? "" :"s";
+				return `Já temos ${this.quantidadePessoas} pessoa${s} no carro!`;
+				
+			}else {
+				return 'O carro está lotado!';
+			}
+			
 		}
 }
 
