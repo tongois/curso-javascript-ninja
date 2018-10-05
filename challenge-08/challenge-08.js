@@ -5,29 +5,45 @@ desses parâmetros.
 */
 // ?
 
+	
+	const sum = function calculateSum(n1,n2){
+		return n1+n2;
+	}
+
 /*
 Invoque a função criada acima, passando dois números que serão somados, e mostre
 o resultado no console, com a frase:
 "A soma de [VALOR 1] e [VALOR2] é igual a [RESULTADO]."
 */
-// ?
+// 
+
+	const a =5;
+	const b =9;
+	console.log(`A soma de ${a} e ${b} é igual a ${sum(5,9)}` );
 
 /*
 Mostre no console o nome da função criada acima, com a frase:
 "O nome da função que faz a soma é [NOME DA FUNÇÃO]."
 */
 // ?
-
+	console.log(`O nome da função que faz soma é sum`);    // CORRIGIR
+;
 /*
 Crie uma função literal chamada `showName`. Essa função deve retornar o
 seu nome.
 */
 // ?
 
+	function showName(){     // CORRIGIR
+		return showName;
+	}
+
 /*
 Declare uma variável chamada `varShowName` que recebe a função criada acima.
 */
-// ?
+// ? 
+	
+	const varShowName = showName(); //CORRIGIR
 
 /*
 Usando a variável criada acima, mostre no console o nome e o retorno da função
@@ -35,6 +51,9 @@ atribuída a ela, com a seguinte frase:
 "A função [NOME DA FUNÇÃO] retorna [RETORNO DA FUNÇÃO]."
 */
 // ?
+
+	console.log(`A função [NOME DA FUNÇÃO] retorna [RETORNO DA FUNÇÃO].`);  // CORRIGIR
+
 
 /*
 Crie uma função literal chamada `calculator`, que funcione assim:
@@ -49,6 +68,15 @@ vai efetuar. Será uma string com os valores `+`, `-`, `*`, `/` ou `%`;
   "Operação inválida."
 */
 // ?
+	var op;          // corrigir 
+	function calculator(op){
+		
+		return function calc(n1,n2){
+//			cont r.eval
+			return `Resultado da operação: ${n1} = [RESULTADO].`;
+		}
+	}
+
 
 /*
 Declare uma variável chamada `sum`, que receberá a função acima, passando como
