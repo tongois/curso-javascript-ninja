@@ -26,7 +26,7 @@ Mostre no console o nome da função criada acima, com a frase:
 "O nome da função que faz a soma é [NOME DA FUNÇÃO]."
 */
 // ?
-	console.log(`O nome da função que faz soma é sum`);    // CORRIGIR
+	console.log(`O nome da função que faz soma é ${sum.name}`);    // CORRIGIR
 ;
 /*
 Crie uma função literal chamada `showName`. Essa função deve retornar o
@@ -34,8 +34,8 @@ seu nome.
 */
 // ?
 
-	function showName(){     // CORRIGIR
-		return showName;
+	function showName(){     
+		return showName.name;
 	}
 
 /*
@@ -43,7 +43,9 @@ Declare uma variável chamada `varShowName` que recebe a função criada acima.
 */
 // ? 
 	
-	const varShowName = showName(); //CORRIGIR
+	const varShowName = function showName(){     
+		return showName.name;
+	}
 
 /*
 Usando a variável criada acima, mostre no console o nome e o retorno da função
@@ -52,7 +54,7 @@ atribuída a ela, com a seguinte frase:
 */
 // ?
 
-	console.log(`A função [NOME DA FUNÇÃO] retorna [RETORNO DA FUNÇÃO].`);  // CORRIGIR
+	console.log(`A função ${varShowName.name} retorna ${varShowName()}.`);  // CORRIGIR
 
 
 /*
@@ -68,13 +70,23 @@ vai efetuar. Será uma string com os valores `+`, `-`, `*`, `/` ou `%`;
   "Operação inválida."
 */
 // ?
-	var op;          // corrigir 
+	
 	function calculator(op){
 		
 		return function calc(n1,n2){
-//			cont r.eval
-			return `Resultado da operação: ${n1} = [RESULTADO].`;
+			
+			try{
+				
+			const res = eval(n1+op+n2);
+			return `Resultado da operação: ${n1} ${op} ${n2} = ${res}.`;
+
+			}catch(ex){
+				return 'Operação Invalida'
+			}
+			
 		}
+		
+		
 	}
 
 
@@ -82,12 +94,13 @@ vai efetuar. Será uma string com os valores `+`, `-`, `*`, `/` ou `%`;
 Declare uma variável chamada `sum`, que receberá a função acima, passando como
 parâmetro o operador de soma.
 */
-// ?
+	 const soma = calculator('+');
 
 /*
 Agora `sum` é uma função. Mostre no console a soma de dois números, usando ela.
 */
-// ?
+	
+	console.log(soma(10,10));
 
 /*
 Agora, declare algumas variáveis com os nomes `subtraction`, `multiplication`,
@@ -95,6 +108,11 @@ Agora, declare algumas variáveis com os nomes `subtraction`, `multiplication`,
 correto por parâmetro para cada uma delas.
 */
 // ?
+
+	const substraction = calculator('-');
+	const multiplication = calculator('*');
+	const division = calculator('/');
+	const mod = calculator('%');
 
 /*
 Faça uma operação com cada uma das funções criadas acima, mostrando o resultado
