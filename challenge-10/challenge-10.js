@@ -1,4 +1,4 @@
-(function (){
+//(function (){
 	/*
 	Crie uma IIFE que envolva todo esse arquivo (inclusive esse comentário),
 	e faça a indentação correta.
@@ -10,10 +10,11 @@
 	das variáveis. Analise o que está sendo impresso no console para saber como
 	resolver o problema corretamente.
 	*/
-	var five = '5';
-	console.log( five + ' é número?', typeof five === 'number' );
+	var five = parseInt('5');
+	console.log( five + ' é número?',  typeof(five) === 'number' );
 
-	var concat = 10 + 10;
+	var concat = '10' + 10;
+	
 	console.log( '"' + concat + '" é uma string? E é igual a "1010"?', typeof concat === 'string' );
 
 	/*
@@ -26,6 +27,14 @@
 	propriedade, usando os valores passados por parâmetro.
 	*/
 	// ?
+		
+		const operation = {
+			'+':(n1,n2)=>{return n1+n2},
+			'-':(n1,n2)=>{return n1-n2},
+			'*':(n1,n2)=>{return n1*n2},
+			'/':(n1,n2)=>{return n1/n2},
+			'%':(n1,n2)=>{return n1%n2}
+		};
 
 	/*
 	Crie uma função chamada `isOperatorValid`, que receberá um operador por
@@ -38,6 +47,10 @@
 	- O desafio é fazer o retorno sem usar "if" ou "switch".
 	*/
 	// ?
+
+	function isOperatorValid(opt){
+		
+	};
 
 	/*
 	Agora vamos criar a calculadora.
@@ -113,4 +126,4 @@
 	*/
 	// ?
 	
-})();
+//})();
