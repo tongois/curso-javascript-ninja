@@ -14,8 +14,8 @@ Qual loop você deve usar para que essa mensagem seja mostrada no console?
 	
 	do{
 		console.log('Entrou ao menos uma vez!');
-		once = true;
-	}while(once!==true);
+		
+	}while(once);
 	
 
 /*
@@ -44,7 +44,7 @@ Após o loop, mostre a frase:
 	var counter = 0;
 	for(var prop in person){
 		console.log('The '+ prop +' of person is '+ person[prop]);
-		counter +=1;
+		counter ++;
 	}
 		console.log('The person has '+ counter+' properties');
 
@@ -89,7 +89,7 @@ console.log( 'Pares de 0 a 20:' );
 // ?
 	numbers = [];
 	for(var i = 0 ; i <=20; i++){
-		if(i % 2 !== 0){
+		if(i % 2 ! == 0){
 			continue;
 		}
 		numbers.push(i);

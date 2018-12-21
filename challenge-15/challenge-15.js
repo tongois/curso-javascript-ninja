@@ -1,3 +1,5 @@
+(function(){
+
 /*
 Envolva todo o código desse desafio em uma IIFE.
 Crie um arquivo chamado index.html e adicione esse script ao HTML.
@@ -21,7 +23,22 @@ as seguintes características:
   adicionados à idade original (age). Esse método deverá retornar o objeto
   que será instanciado.
 */
-// ?
+	function Person(name,lastName, age){
+		this.name = name;
+		this.lastName = lastName;
+		this.age = age;
+		
+		this.getFullName = function getFullName(){
+			return this.name +' '+ this.lastName;
+		};
+		this.getAge = function getAge(){
+			return this.age;
+		};
+		this.addAge = function addAge(){
+			this.age += arguments[0];
+			return this;
+		};
+	}
 
 /*
 Crie 3 novos objetos usando o construtor acima. Os objetos serão novas
@@ -30,20 +47,25 @@ parâmetros corretamente para o construtor para criar as novas pessoas.
 Mostre as 3 novas pessoas criadas no console (Um console.log por pessoa).
 */
 console.log( 'Novas pessoas criadas à partir de Person:' );
-// ?
+	var ana = new Person('Ana','Souza Maria',37);
+	var carlos = new Person('Carlos', 'Lopes Mattos', 24);
+	var maria = new Person('Maria', 'da Conceição', 33);
 
 /*
 Mostre no console o nome completo de cada pessoa.
 */
 console.log( '\nNomes das pessoas:' );
-// ?
-
+	console.log(ana.getFullName());
+	console.log(carlos.getFullName());
+	console.log(maria.getFullName());
 /*
 Mostre no console as idades de cada pessoa, com a frase:
 - "[NOME COMPLETO] tem [IDADE] anos."
 */
 console.log( '\nIdade das pessoas:' );
-// ?
+	console.log(ana.getFullName(), 'tem', ana.age , ' anos');
+	console.log(carlos.getFullName(), 'tem',carlos.age, ' anos');
+	console.log(maria.getFullName(), 'tem ', maria.age, ' anos');
 
 /*
 Adicione alguns anos à cada pessoa, e mostre no console a nova idade de
@@ -51,4 +73,10 @@ cada um. A frase deverá ser no formato:
 - "[NOME COMPLETO] agora tem [NOVA IDADE] anos."
 */
 console.log( '\nNova idade das pessoas:' );
-// ?
+	
+	console.log(ana.getFullName(), ' agora tem ', ana.addAge(2).getAge(), ' anos');
+	console.log(carlos.getFullName(), ' agora tem ', carlos.addAge(5).getAge(), ' anos');
+	console.log(maria.getFullName(), ' agora tem ', maria.addAge(4).getAge(), ' anos');
+	
+	
+	})();
