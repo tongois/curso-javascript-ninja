@@ -1,3 +1,8 @@
+(function(doc, win){
+	
+	'use strict';
+
+
 /*
 Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
 As regras são:
@@ -23,3 +28,114 @@ multiplicação (x), então no input deve aparecer "1+2x".
 input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
+
+	var $inputOperation = doc.querySelector('[data-js="visor"]');
+
+	var $numbers = doc.querySelectorAll('[data-js="button-number"]');
+	
+	var $operations = doc.querySelectorAll('[data-js="button-operation"]');
+	
+	var $buttonCE = doc.querySelector('[data-js="button-ce"]');
+	
+	var $buttonEqual = doc.querySelector('[data-js="button-equal"]');
+
+	
+	
+
+
+	 Array.prototype.forEach.call($numbers, function(button){
+		button.addEventListener('click', handleClickNumber, false);
+	});
+	
+	Array.prototype.forEach.call($operations, function(buttonOperation){
+		buttonOperation.addEventListener('click', handleClickOperation ,false);
+	})
+	
+	$buttonCE.addEventListener('click', handleClick, false);
+	
+	$buttonEqual.addEventListener('click', handleClickEqual, false);
+	
+
+	
+	function handleClickNumber(){
+		
+		$inputOperation.value +=  this.value;
+			
+	}
+	
+	
+	function handleClick(){
+		
+		$inputOperation.value = '0';
+	}
+	
+		
+	function handleClickOperation(){
+		
+		$inputOperation.value =  removelastItemIfItIsAnOperator($inputOperation.value);
+		
+		$inputOperation.value+= this.value;	
+		
+	}
+	
+		
+	
+	function removelastItemIfItIsAnOperator(number){
+		if(isLastItemAnOperation(number)){
+			return number.slice(0,-1); // retira o ultimo item do array, caso seja um operador 
+		}
+			return number;
+	}
+	
+	
+	
+	function isLastItemAnOperation(number){
+		
+		var operation = ['+','-','/','*'];
+		
+		var lastItem = number.split('').pop();
+		
+		return operation.some(function(item){
+			return item === lastItem;
+			
+		});
+	}
+
+	
+	function handleClickEqual(){
+		
+		$inputOperation.value =  removelastItemIfItIsAnOperator($inputOperation.value);
+		
+		
+		var allValues = $inputOperation.value.match(/\d+[\+\-\*\/]?/g); // separa a operação em um array 
+		
+		$inputOperation.value = allValues.reduce(function(acumulado, atual){
+			
+			var firstValue = acumulado.slice(0,-1);
+			var operator = acumulado.split('').pop();
+			var lastValue = removelastItemIfItIsAnOperator(atual);
+			var lasOperator = isLastItemAnOperation(atual)? atual.split('').pop(): '';
+			
+			switch(operator){
+				case '+':
+					return (Number(firstValue) + Number(lastValue)) + lasOperator; // tornando o valor numerico para nao ser concatenado
+				case '-':
+					return (Number(firstValue) - Number(lastValue)) + lasOperator;
+				case '*':
+					return (Number(firstValue) * Number(lastValue)) + lasOperator;
+				case '/':
+					return (Number(firstValue) / Number(lastValue)) + lasOperator;
+			}
+		
+		})
+		
+		console.log(allValues);
+		
+	}
+	
+	
+
+	
+	
+
+})(document, window);
